@@ -158,7 +158,7 @@ html, body {
   .dog-img {
     width: 80px;
     left: 36px;
-    bottom: 52px; /* mais baixo, longe do texto */
+    bottom: 72px; /* mais baixo, longe do texto */
   }
 
   #startBtn {
