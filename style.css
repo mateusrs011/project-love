@@ -161,7 +161,7 @@ html, body {
   }
 
   .dog-img.show {
-    transform: translateY(-22px);
+    transform: translateY(-12px);
   }
 
   #startBtn {
