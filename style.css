@@ -127,14 +127,13 @@ html, body {
   .message-box {
     top: 24px;
     left: 14px;
-    width: 52%;
+    width: 56%; /* 👈 aumentei um pouco pra dar espaço pro texto */
   }
 
   #typedText {
-    font-size: 14px;
-    line-height: 1.35;
+    font-size: 16px;
+    line-height: 1.4; /* 👈 ajuda a não ficar espremido */
   }
-
   /* TIMER */
   .timer-box {
     left: 14px;
