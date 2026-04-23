@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Tree Love</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="scene">
+    <canvas id="sceneCanvas"></canvas>
+
+    <img src="img/dog.jpg" class="dog-img" id="dogImg" />
+
+    <div class="message-box" id="messageBox">
+      <p id="typedText"></p>
+    </div>
+
+    <div class="timer-box" id="timerBox">
+      <div class="timer-label">Desde que você entrou na minha vida...</div>
+      <div id="loveTimer"></div>
+    </div>
+
+    <button id="startBtn">Começar</button>
+
+    <audio id="bgMusic" loop>
+      <source src="musica/musica.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
