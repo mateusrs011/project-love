@@ -122,19 +122,17 @@ html, body {
 /* ================= MOBILE ================= */
 
 @media (max-width: 600px) {
-
-  /* TEXTO */
   .message-box {
     top: 24px;
     left: 14px;
-    width: 54%; /* 👈 só um pouquinho maior que antes */
+    width: 52%;
   }
 
   #typedText {
-    font-size: 16px;
-    line-height: 2.10; /* 👈 mais espaço vertical (esse é o segredo) */
+    font-size: 13px;
+    line-height: 1.32;
   }
-  /* TIMER */
+
   .timer-box {
     left: 14px;
     bottom: 10px;
@@ -158,14 +156,12 @@ html, body {
     margin-right: 2px;
   }
 
-  /* CACHORRO */
   .dog-img {
     width: 80px;
     left: 36px;
     bottom: 80px;
   }
 
-  /* BOTÃO */
   #startBtn {
     right: 8px;
     bottom: 8px;
