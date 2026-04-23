@@ -156,10 +156,11 @@ html, body {
   }
 
   .dog-img {
-    width: 80px;
-    left: 36px;
-    bottom: 72px; /* mais baixo, longe do texto */
-  }
+  width: 80px;
+  left: 36px;
+  bottom: 40px; /* base */
+  transform: translateY(-20px); /* 👈 sobe visualmente */
+}
 
   #startBtn {
     right: 8px;
