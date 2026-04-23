@@ -120,6 +120,7 @@ html, body {
   cursor: pointer;
 }
 
+/* MOBILE */
 @media (max-width: 600px) {
   .message-box {
     top: 40px;
@@ -146,9 +147,16 @@ html, body {
   }
 
   .dog-img {
-    width: 100px;
-    left: 20px;      /* MAIS PRA ESQUERDA */
-    bottom: 140px;   /* MAIS PRA CIMA */
+    width: 90px;
+    left: 18vw;
+    bottom: 12vh;
     right: auto;
+  }
+
+  #startBtn {
+    right: 14px;
+    bottom: 14px;
+    padding: 10px 14px;
+    font-size: 12px;
   }
 }
