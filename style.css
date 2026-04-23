@@ -132,7 +132,7 @@ html, body {
 
   #typedText {
     font-size: 16px;
-    line-height: 1.80; /* 👈 mais espaço vertical (esse é o segredo) */
+    line-height: 2.10; /* 👈 mais espaço vertical (esse é o segredo) */
   }
   /* TIMER */
   .timer-box {
