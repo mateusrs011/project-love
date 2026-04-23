@@ -119,12 +119,11 @@ html, body {
   cursor: pointer;
 }
 
-/* MOBILE */
 @media (max-width: 600px) {
   .message-box {
     top: 24px;
     left: 14px;
-    width: 46%; /* menor pra não invadir o cachorro */
+    width: 46%;
   }
 
   #typedText {
@@ -134,7 +133,7 @@ html, body {
 
   .timer-box {
     left: 14px;
-    bottom: 6px; /* mais pra baixo */
+    bottom: 6px;
   }
 
   .timer-label {
@@ -156,11 +155,14 @@ html, body {
   }
 
   .dog-img {
-  width: 80px;
-  left: 36px;
-  bottom: 40px; /* base */
-  transform: translateY(-20px); /* 👈 sobe visualmente */
-}
+    width: 80px;
+    left: 36px;
+    bottom: 40px;
+  }
+
+  .dog-img.show {
+    transform: translateY(-22px);
+  }
 
   #startBtn {
     right: 8px;
