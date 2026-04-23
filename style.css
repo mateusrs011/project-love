@@ -120,43 +120,101 @@ html, body {
   cursor: pointer;
 }
 
-/* MOBILE */
-@media (max-width: 600px) {
+/* TABLET / MOBILE */
+@media (max-width: 900px) {
   .message-box {
-    top: 40px;
-    left: 20px;
-    width: 85%;
+    top: 28px;
+    left: 18px;
+    width: 48%;
   }
 
   #typedText {
-    font-size: 22px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.5;
   }
 
   .timer-box {
-    left: 20px;
-    bottom: 20px;
+    left: 16px;
+    bottom: 14px;
   }
 
   .timer-label {
-    font-size: 12px;
+    font-size: 11px;
+    margin-bottom: 4px;
   }
 
   #loveTimer {
     font-size: 14px;
   }
 
+  .timer-number {
+    font-size: 14px;
+  }
+
+  .timer-unit {
+    font-size: 11px;
+    margin-right: 4px;
+  }
+
   .dog-img {
-    width: 90px;
-    left: 18vw;
-    bottom: 12vh;
-    right: auto;
+    width: 84px;
+    left: 44px;
+    bottom: 88px;
   }
 
   #startBtn {
-    right: 14px;
-    bottom: 14px;
-    padding: 10px 14px;
+    right: 12px;
+    bottom: 12px;
+    padding: 9px 12px;
     font-size: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .message-box {
+    top: 26px;
+    left: 16px;
+    width: 47%;
+  }
+
+  #typedText {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .timer-box {
+    left: 14px;
+    bottom: 12px;
+  }
+
+  .timer-label {
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+
+  #loveTimer {
+    font-size: 12px;
+  }
+
+  .timer-number {
+    font-size: 12px;
+  }
+
+  .timer-unit {
+    font-size: 10px;
+    margin-right: 3px;
+  }
+
+  .dog-img {
+    width: 82px;
+    left: 42px;
+    bottom: 86px;
+  }
+
+  #startBtn {
+    right: 10px;
+    bottom: 10px;
+    padding: 8px 10px;
+    font-size: 11px;
   }
 }

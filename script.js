@@ -15,6 +15,7 @@ let animationId = null;
 let started = false;
 let typingStarted = false;
 let uiShown = false;
+let isMobile = false;
 
 const loveStartDate = new Date("2026-04-15T00:00:00");
 
@@ -75,7 +76,7 @@ let branches = [];
 let canopyHearts = [];
 let fallingHearts = [];
 
-// HELPERS
+/* HELPERS */
 function random(min, max) {
   return Math.random() * (max - min) + min;
 }
@@ -104,7 +105,7 @@ function quadraticPoint(p0, p1, p2, t) {
   };
 }
 
-// TIMER
+/* TIMER */
 function updateTimer() {
   const now = new Date();
   let diff = now - loveStartDate;
@@ -127,7 +128,7 @@ function updateTimer() {
 setInterval(updateTimer, 1000);
 updateTimer();
 
-// TEXTO
+/* TEXTO */
 function typeText(text, speed = 30) {
   let i = 0;
   typedTextEl.textContent = "";
@@ -143,12 +144,13 @@ function typeText(text, speed = 30) {
   typing();
 }
 
-// RESIZE / SETUP
+/* RESIZE / SETUP */
 function resizeCanvas() {
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
   width = window.innerWidth;
   height = window.innerHeight;
+  isMobile = width <= 900;
 
   canvas.width = width * dpr;
   canvas.height = height * dpr;
@@ -171,15 +173,19 @@ function setupScene() {
 
   seed.x = width * 0.5;
   seed.y = -20;
-  seed.r = Math.max(5, Math.min(7, width * 0.01));
+  seed.r = isMobile ? 4 : Math.max(5, Math.min(7, width * 0.01));
   seed.vy = 0;
   seed.active = false;
   seed.landed = false;
 
-  tree.trunkX = width * 0.5;
+  tree.trunkX = isMobile ? width * 0.74 : width * 0.5;
   tree.trunkBaseY = state.groundY;
-  tree.trunkMaxHeight = Math.min(height * 0.48, 420);
-  tree.trunkBottomWidth = Math.max(46, width * 0.034);
+  tree.trunkMaxHeight = isMobile
+    ? Math.min(height * 0.34, 210)
+    : Math.min(height * 0.48, 420);
+  tree.trunkBottomWidth = isMobile
+    ? Math.max(22, width * 0.045)
+    : Math.max(46, width * 0.034);
   tree.trunkTopWidth = tree.trunkBottomWidth * 0.20;
   tree.topY = tree.trunkBaseY - tree.trunkMaxHeight;
 
@@ -199,6 +205,65 @@ function setupScene() {
 function createCurvedBranches() {
   const x = tree.trunkX;
   const topY = tree.topY;
+
+  if (isMobile) {
+    return [
+      {
+        p0: { x: x - 2, y: topY + 62 },
+        cp: { x: x - 10, y: topY + 38 },
+        p1: { x: x - 34, y: topY + 20 },
+        p2: { x: x - 64, y: topY + 8 },
+        w: 6,
+        start: 0.12,
+        end: 0.28
+      },
+      {
+        p0: { x: x + 2, y: topY + 62 },
+        cp: { x: x + 10, y: topY + 38 },
+        p1: { x: x + 34, y: topY + 20 },
+        p2: { x: x + 64, y: topY + 8 },
+        w: 6,
+        start: 0.14,
+        end: 0.30
+      },
+      {
+        p0: { x: x, y: topY + 26 },
+        cp: { x: x - 4, y: topY - 14 },
+        p1: { x: x - 8, y: topY - 52 },
+        p2: { x: x - 14, y: topY - 94 },
+        w: 3.2,
+        start: 0.34,
+        end: 0.54
+      },
+      {
+        p0: { x: x, y: topY + 24 },
+        cp: { x: x + 4, y: topY - 12 },
+        p1: { x: x + 8, y: topY - 50 },
+        p2: { x: x + 14, y: topY - 96 },
+        w: 3.2,
+        start: 0.36,
+        end: 0.56
+      },
+      {
+        p0: { x: x - 42, y: topY + 10 },
+        cp: { x: x - 54, y: topY - 4 },
+        p1: { x: x - 70, y: topY - 22 },
+        p2: { x: x - 86, y: topY - 42 },
+        w: 2,
+        start: 0.50,
+        end: 0.68
+      },
+      {
+        p0: { x: x + 42, y: topY + 10 },
+        cp: { x: x + 54, y: topY - 4 },
+        p1: { x: x + 70, y: topY - 22 },
+        p2: { x: x + 86, y: topY - 42 },
+        w: 2,
+        start: 0.52,
+        end: 0.70
+      }
+    ];
+  }
 
   return [
     {
@@ -272,60 +337,6 @@ function createCurvedBranches() {
       w: 3.6,
       start: 0.52,
       end: 0.70
-    },
-    {
-      p0: { x: x - 34, y: topY - 58 },
-      cp: { x: x - 44, y: topY - 108 },
-      p1: { x: x - 62, y: topY - 172 },
-      p2: { x: x - 90, y: topY - 242 },
-      w: 2.6,
-      start: 0.60,
-      end: 0.80
-    },
-    {
-      p0: { x: x + 36, y: topY - 60 },
-      cp: { x: x + 46, y: topY - 110 },
-      p1: { x: x + 64, y: topY - 176 },
-      p2: { x: x + 94, y: topY - 248 },
-      w: 2.6,
-      start: 0.62,
-      end: 0.82
-    },
-    {
-      p0: { x: x - 154, y: topY - 28 },
-      cp: { x: x - 188, y: topY - 42 },
-      p1: { x: x - 228, y: topY - 64 },
-      p2: { x: x - 260, y: topY - 82 },
-      w: 1.8,
-      start: 0.72,
-      end: 0.90
-    },
-    {
-      p0: { x: x + 158, y: topY - 30 },
-      cp: { x: x + 192, y: topY - 44 },
-      p1: { x: x + 232, y: topY - 66 },
-      p2: { x: x + 264, y: topY - 84 },
-      w: 1.8,
-      start: 0.74,
-      end: 0.92
-    },
-    {
-      p0: { x: x - 66, y: topY - 164 },
-      cp: { x: x - 72, y: topY - 198 },
-      p1: { x: x - 82, y: topY - 232 },
-      p2: { x: x - 92, y: topY - 268 },
-      w: 1.6,
-      start: 0.80,
-      end: 0.96
-    },
-    {
-      p0: { x: x + 70, y: topY - 168 },
-      cp: { x: x + 76, y: topY - 202 },
-      p1: { x: x + 86, y: topY - 236 },
-      p2: { x: x + 98, y: topY - 272 },
-      w: 1.6,
-      start: 0.82,
-      end: 0.98
     }
   ];
 }
@@ -337,21 +348,27 @@ function isInsideHeart(nx, ny) {
 function createHeartCanopy() {
   const list = [];
   const centerX = tree.trunkX;
-  const centerY = tree.topY + 10;
-  const maxHearts = 4200;
+  const centerY = isMobile ? tree.topY + 6 : tree.topY + 30;
+  const maxHearts = isMobile ? 1800 : 4200;
+
+  const rxRange = isMobile ? 150 : 440;
+  const ryTop = isMobile ? 135 : 400;
+  const ryBottom = isMobile ? 120 : 360;
+  const nxScale = isMobile ? 92 : 260;
+  const nyScale = isMobile ? 85 : 235;
 
   while (list.length < maxHearts) {
-    const rx = random(-440, 440);
-    const ry = random(-400, 360);
+    const rx = random(-rxRange, rxRange);
+    const ry = random(-ryTop, ryBottom);
 
-    const nx = rx / 260;
-    const ny = -ry / 235;
+    const nx = rx / nxScale;
+    const ny = -ry / nyScale;
 
     if (isInsideHeart(nx, ny)) {
       list.push({
         x: centerX + rx,
         y: centerY + ry,
-        size: random(9, 16),
+        size: isMobile ? random(5, 9) : random(9, 16),
         color: palette[Math.floor(random(0, palette.length))],
         appearAt: random(0.58, 1.52),
         driftX: random(-0.04, 0.04),
@@ -364,7 +381,7 @@ function createHeartCanopy() {
   return list;
 }
 
-// DESENHO
+/* DESENHO */
 function drawGround() {
   ctx.save();
   ctx.beginPath();
@@ -393,7 +410,7 @@ function drawTrunk(progress) {
 
   const h = tree.trunkMaxHeight * easeOutCubic(p);
   const topY = tree.trunkBaseY - h;
-  const sway = Math.sin(p * Math.PI * 0.9) * 10;
+  const sway = Math.sin(p * Math.PI * 0.9) * (isMobile ? 4 : 10);
 
   ctx.save();
   ctx.beginPath();
@@ -468,7 +485,6 @@ function drawMiniHeart(x, y, size, color, alpha = 1) {
   ctx.closePath();
   ctx.fillStyle = color;
   ctx.fill();
-
   ctx.restore();
 }
 
@@ -495,7 +511,7 @@ function drawFallingHearts() {
   });
 }
 
-// UPDATE
+/* UPDATE */
 function updateSeed() {
   if (!seed.active || seed.landed) return;
 
@@ -514,7 +530,7 @@ function updateMainProgress() {
   if (state.phase !== "growing" && state.phase !== "finished") return;
 
   if (state.progress < 1.7) {
-    state.progress += 0.0032;
+    state.progress += isMobile ? 0.004 : 0.0032;
   } else {
     state.progress = 1.7;
     state.phase = "finished";
@@ -522,7 +538,7 @@ function updateMainProgress() {
 
   if (state.progress > 1.46) {
     const move = clamp((state.progress - 1.46) / 0.18, 0, 1);
-    state.treeShiftX = easeOutCubic(move) * (width * 0.22);
+    state.treeShiftX = easeOutCubic(move) * (isMobile ? width * 0.02 : width * 0.22);
   }
 
   if (state.progress > 1.60 && !uiShown) {
@@ -533,21 +549,21 @@ function updateMainProgress() {
 
     if (!typingStarted) {
       typingStarted = true;
-      typeText(message, 30);
+      typeText(message, isMobile ? 18 : 30);
     }
   }
 
-  if (state.progress > 1.18 && Math.random() < 0.35) {
+  if (state.progress > 1.18 && Math.random() < (isMobile ? 0.18 : 0.35)) {
     const treeCenterX = tree.trunkX + state.treeShiftX;
 
-    const leftColumnMinX = treeCenterX - 560;
-    const leftColumnMaxX = treeCenterX - 260;
+    const leftColumnMinX = isMobile ? treeCenterX - 170 : treeCenterX - 560;
+    const leftColumnMaxX = isMobile ? treeCenterX - 90 : treeCenterX - 260;
 
-    const rightColumnMinX = treeCenterX + 260;
-    const rightColumnMaxX = treeCenterX + 560;
+    const rightColumnMinX = isMobile ? treeCenterX + 60 : treeCenterX + 260;
+    const rightColumnMaxX = isMobile ? treeCenterX + 140 : treeCenterX + 560;
 
-    const topY = state.groundY - 640;
-    const bottomY = state.groundY - 120;
+    const topY = isMobile ? state.groundY - 250 : state.groundY - 640;
+    const bottomY = isMobile ? state.groundY - 80 : state.groundY - 120;
 
     fallingHearts.push({
       x: random(leftColumnMinX, leftColumnMaxX),
@@ -555,7 +571,7 @@ function updateMainProgress() {
       vx: random(-0.03, 0.03),
       vy: random(0.28, 0.55),
       alpha: 0.82,
-      size: random(4.5, 6.5),
+      size: isMobile ? random(2.8, 4.2) : random(4.5, 6.5),
       color: palette[Math.floor(Math.random() * palette.length)]
     });
 
@@ -565,7 +581,7 @@ function updateMainProgress() {
       vx: random(-0.03, 0.03),
       vy: random(0.28, 0.55),
       alpha: 0.82,
-      size: random(4.5, 6.5),
+      size: isMobile ? random(2.8, 4.2) : random(4.5, 6.5),
       color: palette[Math.floor(Math.random() * palette.length)]
     });
   }
@@ -575,13 +591,13 @@ function updateFallingHearts() {
   fallingHearts.forEach((heart) => {
     heart.x += heart.vx;
     heart.y += heart.vy;
-    heart.alpha -= 0.0042;
+    heart.alpha -= isMobile ? 0.006 : 0.0042;
   });
 
   fallingHearts = fallingHearts.filter((heart) => heart.alpha > 0);
 }
 
-// CENA
+/* CENA */
 function drawScene() {
   ctx.clearRect(0, 0, width, height);
 
@@ -610,13 +626,13 @@ function animate() {
   animationId = requestAnimationFrame(animate);
 }
 
-// START
+/* START */
 startBtn.addEventListener("click", () => {
   if (started) return;
   started = true;
 
   music.currentTime = 10;
-  music.play();
+  music.play().catch(() => {});
 
   startBtn.style.display = "none";
   seed.active = true;
