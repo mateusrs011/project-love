@@ -119,28 +119,27 @@ html, body {
   cursor: pointer;
 }
 
-/* ================= MOBILE ================= */
-
+/* MOBILE */
 @media (max-width: 600px) {
   .message-box {
     top: 24px;
     left: 14px;
-    width: 52%;
+    width: 46%; /* menor pra não invadir o cachorro */
   }
 
   #typedText {
-    font-size: 13px;
-    line-height: 1.32;
+    font-size: 16px;
+    line-height: 1.45;
   }
 
   .timer-box {
     left: 14px;
-    bottom: 10px;
+    bottom: 6px; /* mais pra baixo */
   }
 
   .timer-label {
     font-size: 10px;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }
 
   #loveTimer {
@@ -159,7 +158,7 @@ html, body {
   .dog-img {
     width: 80px;
     left: 36px;
-    bottom: 80px;
+    bottom: 36px; /* mais baixo, longe do texto */
   }
 
   #startBtn {
