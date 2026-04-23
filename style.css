@@ -96,6 +96,15 @@ html, body {
   font-size: 24px;
 }
 
+.timer-number {
+  font-size: 24px;
+}
+
+.timer-unit {
+  font-size: 16px;
+  margin-right: 6px;
+}
+
 /* BOTÃO */
 #startBtn {
   position: absolute;
@@ -111,6 +120,7 @@ html, body {
   cursor: pointer;
 }
 
+/* MOBILE */
 @media (max-width: 600px) {
   .message-box {
     top: 40px;
@@ -137,9 +147,9 @@ html, body {
   }
 
   .dog-img {
-    width: 120px;
-    right: 20px;
-    left: auto;
-    bottom: 40px;
+    width: 84px;
+    left: 82px;     /* joga pra caixinha da esquerda */
+    right: auto;
+    bottom: 115px;  /* sobe acima da linha preta */
   }
 }
