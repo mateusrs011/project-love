@@ -178,13 +178,13 @@ function setupScene() {
   seed.active = false;
   seed.landed = false;
 
-  tree.trunkX = isMobile ? width * 0.74 : width * 0.5;
+  tree.trunkX = isMobile ? width * 0.79 : width * 0.5;
   tree.trunkBaseY = state.groundY;
   tree.trunkMaxHeight = isMobile
-    ? Math.min(height * 0.34, 210)
+    ? Math.min(height * 0.31, 190)
     : Math.min(height * 0.48, 420);
   tree.trunkBottomWidth = isMobile
-    ? Math.max(22, width * 0.045)
+    ? Math.max(18, width * 0.035)
     : Math.max(46, width * 0.034);
   tree.trunkTopWidth = tree.trunkBottomWidth * 0.20;
   tree.topY = tree.trunkBaseY - tree.trunkMaxHeight;
@@ -209,58 +209,40 @@ function createCurvedBranches() {
   if (isMobile) {
     return [
       {
-        p0: { x: x - 2, y: topY + 62 },
-        cp: { x: x - 10, y: topY + 38 },
-        p1: { x: x - 34, y: topY + 20 },
-        p2: { x: x - 64, y: topY + 8 },
-        w: 6,
+        p0: { x: x - 2, y: topY + 54 },
+        cp: { x: x - 8, y: topY + 34 },
+        p1: { x: x - 24, y: topY + 18 },
+        p2: { x: x - 46, y: topY + 6 },
+        w: 4.6,
         start: 0.12,
         end: 0.28
       },
       {
-        p0: { x: x + 2, y: topY + 62 },
-        cp: { x: x + 10, y: topY + 38 },
-        p1: { x: x + 34, y: topY + 20 },
-        p2: { x: x + 64, y: topY + 8 },
-        w: 6,
+        p0: { x: x + 2, y: topY + 54 },
+        cp: { x: x + 8, y: topY + 34 },
+        p1: { x: x + 24, y: topY + 18 },
+        p2: { x: x + 46, y: topY + 6 },
+        w: 4.6,
         start: 0.14,
         end: 0.30
       },
       {
-        p0: { x: x, y: topY + 26 },
-        cp: { x: x - 4, y: topY - 14 },
-        p1: { x: x - 8, y: topY - 52 },
-        p2: { x: x - 14, y: topY - 94 },
-        w: 3.2,
+        p0: { x: x, y: topY + 24 },
+        cp: { x: x - 3, y: topY - 6 },
+        p1: { x: x - 6, y: topY - 34 },
+        p2: { x: x - 10, y: topY - 66 },
+        w: 2.4,
         start: 0.34,
         end: 0.54
       },
       {
-        p0: { x: x, y: topY + 24 },
-        cp: { x: x + 4, y: topY - 12 },
-        p1: { x: x + 8, y: topY - 50 },
-        p2: { x: x + 14, y: topY - 96 },
-        w: 3.2,
+        p0: { x: x, y: topY + 22 },
+        cp: { x: x + 3, y: topY - 4 },
+        p1: { x: x + 6, y: topY - 32 },
+        p2: { x: x + 10, y: topY - 68 },
+        w: 2.4,
         start: 0.36,
         end: 0.56
-      },
-      {
-        p0: { x: x - 42, y: topY + 10 },
-        cp: { x: x - 54, y: topY - 4 },
-        p1: { x: x - 70, y: topY - 22 },
-        p2: { x: x - 86, y: topY - 42 },
-        w: 2,
-        start: 0.50,
-        end: 0.68
-      },
-      {
-        p0: { x: x + 42, y: topY + 10 },
-        cp: { x: x + 54, y: topY - 4 },
-        p1: { x: x + 70, y: topY - 22 },
-        p2: { x: x + 86, y: topY - 42 },
-        w: 2,
-        start: 0.52,
-        end: 0.70
       }
     ];
   }
@@ -319,24 +301,6 @@ function createCurvedBranches() {
       w: 5.2,
       start: 0.36,
       end: 0.56
-    },
-    {
-      p0: { x: x - 96, y: topY + 4 },
-      cp: { x: x - 128, y: topY - 8 },
-      p1: { x: x - 176, y: topY - 44 },
-      p2: { x: x - 228, y: topY - 94 },
-      w: 3.6,
-      start: 0.50,
-      end: 0.68
-    },
-    {
-      p0: { x: x + 100, y: topY + 2 },
-      cp: { x: x + 132, y: topY - 10 },
-      p1: { x: x + 180, y: topY - 46 },
-      p2: { x: x + 232, y: topY - 98 },
-      w: 3.6,
-      start: 0.52,
-      end: 0.70
     }
   ];
 }
@@ -348,14 +312,14 @@ function isInsideHeart(nx, ny) {
 function createHeartCanopy() {
   const list = [];
   const centerX = tree.trunkX;
-  const centerY = isMobile ? tree.topY + 6 : tree.topY + 30;
-  const maxHearts = isMobile ? 1800 : 4200;
+  const centerY = isMobile ? tree.topY + 4 : tree.topY + 30;
+  const maxHearts = isMobile ? 1450 : 4200;
 
-  const rxRange = isMobile ? 150 : 440;
-  const ryTop = isMobile ? 135 : 400;
-  const ryBottom = isMobile ? 120 : 360;
-  const nxScale = isMobile ? 92 : 260;
-  const nyScale = isMobile ? 85 : 235;
+  const rxRange = isMobile ? 115 : 440;
+  const ryTop = isMobile ? 105 : 400;
+  const ryBottom = isMobile ? 96 : 360;
+  const nxScale = isMobile ? 72 : 260;
+  const nyScale = isMobile ? 66 : 235;
 
   while (list.length < maxHearts) {
     const rx = random(-rxRange, rxRange);
@@ -368,7 +332,7 @@ function createHeartCanopy() {
       list.push({
         x: centerX + rx,
         y: centerY + ry,
-        size: isMobile ? random(5, 9) : random(9, 16),
+        size: isMobile ? random(4.2, 7.2) : random(9, 16),
         color: palette[Math.floor(random(0, palette.length))],
         appearAt: random(0.58, 1.52),
         driftX: random(-0.04, 0.04),
@@ -410,7 +374,7 @@ function drawTrunk(progress) {
 
   const h = tree.trunkMaxHeight * easeOutCubic(p);
   const topY = tree.trunkBaseY - h;
-  const sway = Math.sin(p * Math.PI * 0.9) * (isMobile ? 4 : 10);
+  const sway = Math.sin(p * Math.PI * 0.9) * (isMobile ? 3 : 10);
 
   ctx.save();
   ctx.beginPath();
@@ -538,7 +502,7 @@ function updateMainProgress() {
 
   if (state.progress > 1.46) {
     const move = clamp((state.progress - 1.46) / 0.18, 0, 1);
-    state.treeShiftX = easeOutCubic(move) * (isMobile ? width * 0.02 : width * 0.22);
+    state.treeShiftX = easeOutCubic(move) * (isMobile ? width * 0.01 : width * 0.22);
   }
 
   if (state.progress > 1.60 && !uiShown) {
@@ -553,25 +517,25 @@ function updateMainProgress() {
     }
   }
 
-  if (state.progress > 1.18 && Math.random() < (isMobile ? 0.18 : 0.35)) {
+  if (state.progress > 1.18 && Math.random() < (isMobile ? 0.15 : 0.35)) {
     const treeCenterX = tree.trunkX + state.treeShiftX;
 
-    const leftColumnMinX = isMobile ? treeCenterX - 170 : treeCenterX - 560;
-    const leftColumnMaxX = isMobile ? treeCenterX - 90 : treeCenterX - 260;
+    const leftColumnMinX = isMobile ? treeCenterX - 145 : treeCenterX - 560;
+    const leftColumnMaxX = isMobile ? treeCenterX - 80 : treeCenterX - 260;
 
-    const rightColumnMinX = isMobile ? treeCenterX + 60 : treeCenterX + 260;
-    const rightColumnMaxX = isMobile ? treeCenterX + 140 : treeCenterX + 560;
+    const rightColumnMinX = isMobile ? treeCenterX + 46 : treeCenterX + 260;
+    const rightColumnMaxX = isMobile ? treeCenterX + 110 : treeCenterX + 560;
 
-    const topY = isMobile ? state.groundY - 250 : state.groundY - 640;
-    const bottomY = isMobile ? state.groundY - 80 : state.groundY - 120;
+    const topY = isMobile ? state.groundY - 210 : state.groundY - 640;
+    const bottomY = isMobile ? state.groundY - 70 : state.groundY - 120;
 
     fallingHearts.push({
       x: random(leftColumnMinX, leftColumnMaxX),
       y: random(topY, bottomY),
       vx: random(-0.03, 0.03),
-      vy: random(0.28, 0.55),
+      vy: random(0.22, 0.42),
       alpha: 0.82,
-      size: isMobile ? random(2.8, 4.2) : random(4.5, 6.5),
+      size: isMobile ? random(2.2, 3.4) : random(4.5, 6.5),
       color: palette[Math.floor(Math.random() * palette.length)]
     });
 
@@ -579,9 +543,9 @@ function updateMainProgress() {
       x: random(rightColumnMinX, rightColumnMaxX),
       y: random(topY, bottomY),
       vx: random(-0.03, 0.03),
-      vy: random(0.28, 0.55),
+      vy: random(0.22, 0.42),
       alpha: 0.82,
-      size: isMobile ? random(2.8, 4.2) : random(4.5, 6.5),
+      size: isMobile ? random(2.2, 3.4) : random(4.5, 6.5),
       color: palette[Math.floor(Math.random() * palette.length)]
     });
   }
